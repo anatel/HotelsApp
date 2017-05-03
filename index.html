@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="hotelsApp">
+    <head>
+        <title>Hotels Viewer</title>
+        
+        <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="/node_modules/font-awesome/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="app.css"/>
+        
+        <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>      
+        <script src="/node_modules/angular/angular.min.js"></script>
+        <script src="/node_modules/angular-route/angular-route.min.js"></script>
+        
+        <script src="app.js"></script>
+        <script src="services/utils.js"></script>
+        <script src="services/hotelsFactory.js"></script>
+        <script src="components/recentlyViewed.js"></script>
+        <script src="components/radioTrackBy.js"></script>
+        <script src="controllers/hotelCtrl.js"></script>
+        <script src="controllers/hotelsListCtrl.js"></script>
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <div ng-view></div>
+		</div>
+        
+    </body>
+</html>

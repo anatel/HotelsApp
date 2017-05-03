@@ -1,0 +1,4 @@
+<p class="lead">{{$ctrl.title}}</p>
+<div class="list-group">
+    <a ng-repeat="recent in $ctrl.hotels | orderBy:'-timestamp'" ng-href="#/hotel/{{recent.id}}" class="list-group-item">{{recent.name}}</a>
+</div>

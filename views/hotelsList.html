@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-md-3">
+         <recently-viewed-hotels title="Recent Hotels You Visited:"></recently-viewed-hotels>
+    </div>
+    
+    <div class="col-md-9">
+        <p class="lead"><i class="fa fa-bed" aria-hidden="true"></i> Hotels List:</p>
+        <form class="form-inline">
+            <label class="sr-only" for="hotelNameSearch">Hotel Name</label>
+            <input type="text" class="form-control" id="hotelNameSearch" ng-model="hotelName" placeholder="Hotel Name">
+            
+            <div class="btn-group formItem">
+                <button type="button" class="btn btn-default brandTitle"><span class="pull-left">{{selectedBrand.txt || 'Hotel Brand'}}</span></button>
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+              </button>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="brand in brands"><a ng-click="selectBrand(brand);">{{brand.txt}}</a></li>
+                </ul>
+            </div>
+            
+            <a class="resetLink formItem" ng-click="resetFilters()">Reset Filters</a>
+        </form>
+        
+        <table class="table table-striped hotels-table">
+            <thead>
+                <tr>
+                <th>Hotel Name</th>
+                <th>City</th>
+                <th>County</th>
+                <th>Star Rating</th>
+                <th>Brand</th>
+                <th></th>
+                </tr>
+            </thead>
+            
+            <tbody>
+                <tr ng-repeat="hotel in hotels | filter:{ name:hotelName, details: {brand: {val: selectedBrand.val}} }">
+                    <td><a ng-href="#/hotel/{{hotel._id}}">{{hotel.name}}</a></td>
+                    <td>{{hotel.address.city}}</td>
+                    <td>{{hotel.address.country}}</td>
+                    <td>{{hotel.details.starRating.txt}}</td>
+                    <td>{{hotel.details.brand.txt}}</td>
+                    <td><a ng-click="deleteHotel(hotel._id)" class="deleteHotel" title="Delete {{hotel.name}}"><i class="fa fa-trash fa-lg deleteHotel" aria-hidden="true"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+
+</div>

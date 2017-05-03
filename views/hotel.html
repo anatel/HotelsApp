@@ -1,0 +1,140 @@
+<div class="row">
+    
+    <div ng-if="error">{{error}}</div>
+    
+    <div ng-if="!error">
+        <div class="col-md-3">
+            <img class="hotelImg" ng-src="{{hotel.images[0].url}}"/>
+        </div>
+
+        <div class="col-md-8">
+            <form class="form-horizontal">
+                <div class="form-group"> 
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button ng-if="!editMode" type="button" class="btn btn-default" ng-click="toggleEditMode()">Edit Hotel</button>
+                        <span ng-if="editMode">
+                            <button type="submit" class="btn btn-default" ng-click="saveHotel()">Save Changes</button>
+                            <button type="button" class="btn btn-default" ng-click="resetHotel();toggleEditMode()">Cancel</button>
+                        </span>
+                    </div>
+                </div>
+
+                <!--Hotel Name-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="name">Hotel Name:</label>
+                    <div class="col-sm-10">
+                        <input ng-if="editMode" type="text" class="form-control" id="name" ng-model="hotel.name"/>
+                        <span ng-if="!editMode">{{hotel.name}}</span>                        
+                    </div>
+                </div>
+                
+                <!--Description-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="name">Description:</label>
+                    <div class="col-sm-10">
+                        <input ng-if="editMode" type="text" class="form-control" id="name" ng-model="hotel.description"/>
+                        <span ng-if="!editMode">{{hotel.description}}</span>                        
+                    </div>
+                </div>
+            
+                <!--Address-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="address">Address:</label>
+                    <div class="col-sm-10">
+                        <input ng-if="editMode" type="text" class="form-control" id="address" ng-model="hotel.address.address"/>
+                        <span ng-if="!editMode">{{hotel.address.address}}</span>
+                    </div>
+                </div>
+
+                <!--City-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="city">City:</label>
+                    <div class="col-sm-10">
+                        <input ng-if="editMode" type="text" class="form-control" id="city" ng-model="hotel.address.city"/>
+                        <span ng-if="!editMode">{{hotel.address.city}}</span> 
+                    </div>
+                </div>
+
+                <!--Country-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="country">Country:</label>
+                    <div class="col-sm-10">
+                        <input ng-if="editMode" type="text" class="form-control" id="country" ng-model="hotel.address.country"/>
+                        <span ng-if="!editMode">{{hotel.address.country}}</span>
+                    </div>
+                </div>
+            
+                <!--Stars-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="stars">Stars:</label>
+                    <div class="col-sm-10">
+                        <input ng-if="editMode" type="number" class="form-control" id="stars" ng-model="hotel.details.starRating.val"/>
+                        <span ng-if="!editMode">{{hotel.details.starRating.txt}}</span>
+                    </div>
+                </div>
+            
+                <!--Brand-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="brand">Brand:</label>
+                    <div class="col-sm-10">
+                        <label ng-if="editMode" class="radio-inline" ng-repeat="brand in brands">
+                          <input type="radio" name="brandsSelect"  ng-value="brand" ng-model="$parent.hotel.details.brand" radio-track-by="val">{{brand.txt}}
+                        </label>
+                        <span ng-if="!editMode">{{hotel.details.brand.txt}}</span>
+                    </div>
+                </div>
+
+                <!--Currency-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="currency">Currency:</label>
+                    <div class="col-sm-10">
+                        <input ng-if="editMode" type="text" class="form-control" id="currency" ng-model="hotel.details.currency"/>
+                        <span ng-if="!editMode">{{hotel.details.currency}}</span>
+                    </div>
+                </div>
+            
+                <!--Check In-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="checkin">Check-In:</label>
+                    <div class="col-sm-10">
+                        <input ng-if="editMode" type="text" class="form-control" id="checkin" ng-model="hotel.details.checkIn"/>
+                        <span ng-if="!editMode">{{hotel.details.checkIn}}</span>
+                    </div>
+                </div>
+
+                <!--Check Out-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="checkout">Check-Out:</label>
+                    <div class="col-sm-10">
+                        <input ng-if="editMode" type="text" class="form-control" id="checkout" ng-model="hotel.details.checkOut"/>
+                        <span ng-if="!editMode">{{hotel.details.checkOut}}</span>
+                    </div>
+                </div>
+            
+                <!--Numer of rooms-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="numOfRooms">Number of Rooms:</label>
+                    <div class="col-sm-10">
+                        <input ng-if="editMode" type="number" class="form-control" id="numOfRooms" ng-model="hotel.details.numOfRooms"/>
+                        <span ng-if="!editMode">{{hotel.details.numOfRooms}}</span>
+                    </div>
+                </div>
+            
+                <!--Amenities-->
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="amenties">Amenities:</label>
+                    <div class="col-sm-10">
+                        <span ng-repeat="amenitie in optionalAmenities" ng-if="editMode">
+                            <input type="checkbox" name="{{amenitie.txt}}" ng-checked="hasAmenitie(amenitie.val)" ng-click="toggleAmenitie(amenitie)"> {{amenitie.txt}}</br>
+                        </span>
+
+                        <h4 ng-if="!editMode" class="amenitie-badge" ng-repeat="amenitie in hotel.amenities"><span class="label label-info">{{amenitie.txt}}</span></h4>
+                    </div>
+                </div>
+                
+            </form>
+        
+        </div>
+    </div>
+
+</div>

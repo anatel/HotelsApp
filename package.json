@@ -1,0 +1,27 @@
+{
+  "name": "hotels_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "http-server -a localhost -p 8000 -c-1 ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anatel/HotelsApp.git"
+  },
+  "author": "Anat Eliyahu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anatel/HotelsApp/issues"
+  },
+  "homepage": "https://github.com/anatel/HotelsApp#readme",
+  "dependencies": {
+    "angular": "^1.6.0",
+    "angular-route": "^1.6.0",
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "http-server": "^0.10.0",
+    "jquery": "^1.12.4"
+  }
+}
